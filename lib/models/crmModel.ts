@@ -4,56 +4,56 @@ import { isDate } from 'util';
 const Schema = mongoose.Schema;
 
 export const LoanSchema = new Schema({
-    loanName :{
+    loanName: {
         type: String,
         required: 'Enter name of the loan'
     },
-    lenderName :{
+    lenderName: {
         type: String,
         required: 'Enter name of the lender'
     },
-    facilityAmount:{
+    facilityAmount: {
         type: Number,
         required: 'Enter facility amount'
     },
-    charge:{
+    charge: {
         type: Number,
         required: 'Enter loan type'
     },
-    GDV:{
+    GDV: {
         type: Number
     },
-    interest:{
+    interest: {
         type: Number,
         required: 'Enter interest percentage'
     },
-    interestCompounded:{
+    interestCompounded: {
         type: Boolean
     },
-    compoundPeriod:{
+    compoundPeriod: {
         type: String
     },
-    interestServiced:{
+    interestServiced: {
         type: Boolean
     },
     lendingFee: {
         type: Number,
         required: 'Enter lending fee percentage'
     },
-    lendingFeeAddedToFacility:{
+    lendingFeeAddedToFacility: {
         type: Boolean
     },
-    lendingFeeLoanType:{
+    lendingFeeLoanType: {
         type: Number,
         required: 'Enter lending fee loan type'
     },
-    otherFeesOnLending:{
+    otherFeesOnLending: {
         type: Number
     },
-    otherFeesAddedToFacility:{
+    otherFeesAddedToFacility: {
         type: Boolean
     },
-    OtherFeesLoanType:{
+    OtherFeesLoanType: {
         type: Number,
         required: 'Enter other fees loan type'
     },
@@ -61,82 +61,88 @@ export const LoanSchema = new Schema({
         type: Number,
         required: 'Enter non-utilization rate percentage'
     },
-    nonUtilizationRateCompound:{
+    nonUtilizationRateCompound: {
         type: Boolean
     },
-    nonUtilizationRateCompoundPeriod:{
+    nonUtilizationRateCompoundPeriod: {
         type: String
     },
-    exitFees:{
+    exitFees: {
         type: Number,
         required: 'Enter exit fees percentage'
     },
-    exitFeesCalculation:{
+    exitFeesCalculation: {
         type: Number
     },
-    defaultRate:{
+    defaultRate: {
         type: Number,
         required: 'Enter default rate percentage'
     },
-    defaultCompounded:{
+    defaultCompounded: {
         type: Boolean
     },
-    capitalizeLoanOnDefault:{
+    capitalizeLoanOnDefault: {
         type: Boolean
     },
-    defaultAtEndOfTerm:{
+    defaultAtEndOfTerm: {
         type: Boolean
     },
-    secondLoanPartInterest:{
+    secondLoanPartInterest: {
         type: Number,
         required: 'Enter second loan part interest rate'
     },
-    secondLoanPartInterestCompounded:{
+    secondLoanPartInterestCompounded: {
         type: Boolean
     },
-    secondLoanPartInterestCompoundPeriod:{
-        type:Boolean
-    },
-    secondLoanServiced:{
+    secondLoanPartInterestCompoundPeriod: {
         type: Boolean
     },
-    minimumInterestAmmount:{
+    secondLoanServiced: {
+        type: Boolean
+    },
+    minimumInterestAmmount: {
         type: Number,
         required: 'Enter minimum interest Amount'
     },
-    startDate:{
+    startDate: {
         type: Date
     },
-    repaymentDate:{
+    repaymentDate: {
         type: Date
     },
-    interestCalculationDate:{
+    interestCalculationDate: {
         type: Date
-    }
-    
-});
-export const DrawdownScheduleSchema = new Schema({
-    drawdown: {
-        drawdownDate:{
-            type: Date
-        },
-        drawdownAmount:{
-            type: Number
-        }
     }
 
 });
-export const systemAddedDataSchema = new Schema({
-    dailyRateFirstLoan:{
+export const DrawdownScheduleSchema = new Schema({
+
+    loanID: {
+        type: String
+    },
+    drawdownDate: {
+        type: Date
+    },
+    drawdownAmount: {
         type: Number
     },
-    dailyRateSecondLoan :{
+    loanAllocation: {
+        type: String
+    }
+
+
+});
+export const SystemAddedDataSchema = new Schema({
+    dailyRateFirstLoan: {
         type: Number
     },
-    dailyRateNonUtilization:{
+    dailyRateSecondLoan: {
         type: Number
     },
-    dailyDefaultRate:{
+    dailyRateNonUtilization: {
+        type: Number
+    },
+    dailyDefaultRate: {
         type: Number
     }
 });

@@ -1,9 +1,59 @@
 import * as mongoose from 'mongoose';
-import { LoanSchema, DrawdownScheduleSchema, systemAddedDataSchema } from "../models/crmModel";
+import { LoanSchema, DrawdownScheduleSchema, SystemAddedDataSchema } from "../models/crmModel";
 import { Request, Response } from "express";
 
 const Loan = mongoose.model('Loan', LoanSchema);
 const DrawdownSchedule = mongoose.model('Drawdown', DrawdownScheduleSchema);
+const SystemAddedData = mongoose.model('SystemAddedData', SystemAddedDataSchema);
+
+export class SystemAddedDataController {
+    public addNewSystemAddedData (req: Request, res: Response){
+       let newSystemAddedData = new SystemAddedData(req.body);
+
+       newSystemAddedData.save((err, systemAddedData)=>{
+        if(err){
+            res.send(err);
+        }
+        res.json(systemAddedData);
+       })
+
+    }
+    public getSystemAddedData (req: Request, res: Response){
+        SystemAddedData.find({}, (err, systemAddedData)=>{
+            if(err){
+                res.send(err);
+            }
+            res.json(systemAddedData);
+        });
+    }
+    public getSystemAddedDataWithID (req: Request, res: Response){
+        SystemAddedData.findById(req.params.systemAddedDataId, (err, systemAddedData)=>{
+            if(err){
+                res.send(err);
+            }
+            res.json(systemAddedData);
+        });
+    }
+    public updateSystemAddedData (req: Request, res: Response){
+        SystemAddedData.findOneAndUpdate({_id: req.params.systemAddedDataId}, req.body,
+        {new: true}, (err, drawdownschedule) => {
+            if(err){
+                res.send(err);
+            }
+            res.json(drawdownschedule);
+        });
+    }
+    public deleteSystemAddedData (req: Request, res: Response){
+        SystemAddedData.findOneAndDelete({_id: req.params.systemAddedDataId},
+        (err) => {
+            if(err){
+                res.send(err);
+            }
+            let message = "System Added Data successfully deleted"
+            res.json(message);
+        });
+    }
+}
 
 export class DrawdownScheduleController{
     public addNewDrawdownSchedule (req: Request, res: Response){
@@ -16,7 +66,7 @@ export class DrawdownScheduleController{
             res.json(drawdownschedule);
         })
     }
-    public getLoans (req: Request, res: Response){
+    public getDrawdownSchedule (req: Request, res: Response){
         DrawdownSchedule.find({}, (err, loan)=>{
             if(err){
                 res.send(err);
