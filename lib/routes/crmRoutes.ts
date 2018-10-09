@@ -6,7 +6,7 @@ import app from "../app";
 
 export class Routes {
     
-    public contactController: LoanController = new LoanController();
+    public loanController: LoanController = new LoanController();
    
     public routes(app): void{
         app.route('/')
@@ -18,12 +18,13 @@ export class Routes {
 
         //contact
         app.route('/loan')
-        .get(this.contactController.getLoans)
-        .post(this.contactController.addNewLoan);
+        .get(this.loanController.getLoans)
+        .post(this.loanController.addNewLoan);
 
         app.route('/loan/:loanId')
-        .get(this.contactController.getLoanWithID)
-        .put(this.contactController.updateLoan)
+        .get(this.loanController.getLoanWithID)
+        .put(this.loanController.updateLoan)
+        .delete(this.loanController.deleteLoan)
         
     }
         

@@ -115,7 +115,7 @@ export const LoanSchema = new Schema({
     }
     
 });
-export const DrawdownSchema = new Schema({
+export const DrawdownScheduleSchema = new Schema({
     drawdown: {
         drawdownDate:{
             type: Date
@@ -140,3 +140,4 @@ export const systemAddedDataSchema = new Schema({
         type: Number
     }
 });
+
