@@ -4,7 +4,7 @@ import { Request, Response } from "express";
 
 const Loan = mongoose.model('Loan', LoanSchema);
 
-export class ContactController{
+export class LoanController{
     public addNewLoan (req: Request, res: Response){
         let newLoan = new Loan(req.body);
 

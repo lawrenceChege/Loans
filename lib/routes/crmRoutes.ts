@@ -1,12 +1,12 @@
 
 import {Request, Response} from "express";
-import { ContactController } from "../controllers/crmController";
+import { LoanController } from "../controllers/crmController";
 import app from "../app";
 
 
 export class Routes {
     
-    public contactController: ContactController = new ContactController();
+    public contactController: LoanController = new LoanController();
    
     public routes(app): void{
         app.route('/')
@@ -17,14 +17,13 @@ export class Routes {
         })
 
         //contact
-        app.route('/contact')
-        .get(this.contactController.getContacts)
-        .post(this.contactController.addNewContact);
+        app.route('/loan')
+        .get(this.contactController.getLoans)
+        .post(this.contactController.addNewLoan);
 
-        app.route('/contact/:contactId')
-        .get(this.contactController.getContactWithID)
-        .put(this.contactController.updateContact)
-        .delete(this.contactController.deleteContact)
+        app.route('/loan/:loanId')
+        .get(this.contactController.getLoanWithID)
+        .put(this.contactController.updateLoan)
         
     }
         
