@@ -1,51 +1,43 @@
 import * as mongoose from 'mongoose';
-import { ContactSchema } from "../models/crmModel";
+import { LoanSchema } from "../models/crmModel";
 import { Request, Response } from "express";
 
-const Contact = mongoose.model('Contact', ContactSchema);
+const Loan = mongoose.model('Loan', LoanSchema);
 
 export class ContactController{
-    public addNewContact (req: Request, res: Response){
-        let newContact = new Contact(req.body);
+    public addNewLoan (req: Request, res: Response){
+        let newLoan = new Loan(req.body);
 
-        newContact.save((err, contact)=>{
+        newLoan.save((err, loan)=>{
             if (err){
                 res.send(err);
             }
-            res.json(contact);
+            res.json(loan);
         });
     }
-    public getContacts (req: Request, res: Response){
-        Contact.find({}, (err, contact)=>{
+    public getLoans (req: Request, res: Response){
+        Loan.find({}, (err, loan)=>{
             if(err){
                 res.send(err);
             }
-            res.json(contact);
+            res.json(loan);
         });
     }
-    public getContactWithID (req: Request, res: Response){
-        Contact.findById(req.params.contactId, (err, contact)=>{
+    public getLoanWithID (req: Request, res: Response){
+        Loan.findById(req.params.loanId, (err, loan)=>{
             if(err){
                 res.send(err);
             }
-            res.json(contact);
+            res.json(loan);
         });
     }
-    public updateContact (req: Request, res: Response){
-        Contact.findOneAndUpdate({_id: req.params.contactId}, req.body,
-        {new: true}, (err, contact) => {
+    public updateLoan (req: Request, res: Response){
+        Loan.findOneAndUpdate({_id: req.params.loanId}, req.body,
+        {new: true}, (err, loan) => {
             if(err){
                 res.send(err);
             }
-            res.json(contact);
-        });
-    }
-    public deleteContact (req: Request, res: Response){
-        Contact.remove({ _id: req.params.contactId }, (err) => {
-            if(err){
-                res.send(err);
-            }
-            res.json({message: 'Successfully deleted contact!'});
+            res.json(loan);
         });
     }
 }
