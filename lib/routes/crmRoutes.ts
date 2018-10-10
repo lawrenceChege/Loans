@@ -3,6 +3,8 @@ import { LoanSchema, DrawdownScheduleSchema, SystemAddedDataSchema } from "../mo
 import {Request, Response} from "express";
 import { LoanController, DrawdownScheduleController, SystemAddedDataController } from "../controllers/crmController";
 import app from "../app";
+import { Db } from '../../node_modules/@types/mongodb';
+import  "mongodb://localhost/loansdb"
 
 
 const DrawdownSchedule = mongoose.model('Drawdown', DrawdownScheduleSchema);
@@ -18,18 +20,9 @@ export class Routes {
             // res.status(200).send({
             //     message: 'GET request successfull!'
             // })
-            console.log(this.drawdownSheduleController.getDrawdownSchedule);
-            res.render('table', {
-                loanID: (req: Request, res: Response)=>{
-                    DrawdownSchedule.find({}, (err, drawdownschedule)=>{
-                        if(err){
-                            res.send(err);
-                        }
-                        res.json(drawdownschedule);
-                    });
-                }
-            })
-        });
+            DrawdownSchedule.find({}, {loanID: true, _id: false}, function(error, loanID) {
+                console.log(loanID);
+        }),
 
         //Loan details
         app.route('/loans')

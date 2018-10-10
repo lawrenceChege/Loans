@@ -50,9 +50,11 @@ export class loanScheduleGenerator {
 
 class calculateLoan {
     public getDrawdownDrawAmount(params:any) {
-        
+        let drawdownDrawAmount = drawdownDraw
+        return drawdownDrawAmount
     }
     public getLendingFeesChargeAmount(){
+        let lendingFeesChargeAmount = 
         
     }
     public getLendingFeesServicingChargeAmount(){
@@ -92,7 +94,7 @@ class calculateLoan {
 
     }
     public getInterestOwed(){
-        
+
     }
 
     
