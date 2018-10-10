@@ -14,7 +14,8 @@ class App {
 	this.config();
 	this.routePrv.routes(this.app);
 	this.mongoSetup();
-    }
+	}
+	// view engine setup
 	private mongoSetup(): void{
 		// mongoose.Promise = global.Promise;
 		mongoose.connect(this.mongoUrl);
@@ -25,7 +26,11 @@ class App {
 
 	// support application/x-www-form-urlencoded post data
 	this.app.use(bodyParser.urlencoded({ extended: false }));
+
+	this.app.set('view engine', 'pug');
+	this.app.set('views', __dirname + '/views');
 	}
+
 }
 
 export default new App().app;

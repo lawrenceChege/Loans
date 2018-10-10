@@ -3,6 +3,39 @@ import { isDate } from 'util';
 
 const Schema = mongoose.Schema;
 
+export const LoanSchedule = new Schema({
+    Date:{
+        type: Date
+    },
+    Description:{
+        type: String
+    },
+    Type:{
+        type: String
+    },
+    Amount:{
+        type: Number
+    },
+    FirstLoanBalance:{
+        type: Number
+    },
+    SecondLoanBalance:{
+        type: Number
+    },
+    BalanceDrawn:{
+        type: Number
+    },
+    BalanceUndrawn:{
+        type: Number
+    },
+    InterestAccrued:{
+        type: Number
+    },
+    InterestOwed:{
+        type: Number
+    }
+});
+
 export const LoanSchema = new Schema({
     loanName: {
         type: String,

@@ -19,11 +19,11 @@ export class Routes {
         })
 
         //Loan details
-        app.route('/loan')
+        app.route('/loans')
         .get(this.loanController.getLoans)
         .post(this.loanController.addNewLoan)
 
-        app.route('/loan/:loanId')
+        app.route('/loans/:loanId')
         .get(this.loanController.getLoanWithID)
         .put(this.loanController.updateLoan)
         .delete(this.loanController.deleteLoan)
@@ -47,6 +47,8 @@ export class Routes {
         .get(this.systemAddedDataController.getSystemAddedDataWithID)
         .put(this.systemAddedDataController.updateSystemAddedData)
         .delete(this.systemAddedDataController.deleteSystemAddedData)
+
+        
     }
         
 }
