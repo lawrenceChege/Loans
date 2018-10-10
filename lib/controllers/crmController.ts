@@ -1,10 +1,11 @@
 import * as mongoose from 'mongoose';
-import { LoanSchema, DrawdownScheduleSchema, SystemAddedDataSchema } from "../models/crmModel";
+import { LoanSchema, DrawdownScheduleSchema, SystemAddedDataSchema, LoanScheduleSchema } from "../models/crmModel";
 import { Request, Response } from "express";
 
 const Loan = mongoose.model('Loan', LoanSchema);
 const DrawdownSchedule = mongoose.model('Drawdown', DrawdownScheduleSchema);
 const SystemAddedData = mongoose.model('SystemAddedData', SystemAddedDataSchema);
+
 
 export class SystemAddedDataController {
     public addNewSystemAddedData (req: Request, res: Response){
@@ -67,11 +68,11 @@ export class DrawdownScheduleController{
         })
     }
     public getDrawdownSchedule (req: Request, res: Response){
-        DrawdownSchedule.find({}, (err, loan)=>{
+        DrawdownSchedule.find({}, (err, drawdownschedule)=>{
             if(err){
                 res.send(err);
             }
-            res.json(loan);
+            res.json(drawdownschedule);
         });
     }
     public getDrawdownScheduleWithID (req: Request, res: Response){

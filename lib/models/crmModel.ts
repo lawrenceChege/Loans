@@ -3,7 +3,7 @@ import { isDate } from 'util';
 
 const Schema = mongoose.Schema;
 
-export const LoanSchedule = new Schema({
+export const LoanScheduleSchema = new Schema({
     Date:{
         type: Date
     },

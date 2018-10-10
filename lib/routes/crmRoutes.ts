@@ -1,9 +1,11 @@
-
+import * as mongoose from 'mongoose';
+import { LoanSchema, DrawdownScheduleSchema, SystemAddedDataSchema } from "../models/crmModel";
 import {Request, Response} from "express";
 import { LoanController, DrawdownScheduleController, SystemAddedDataController } from "../controllers/crmController";
 import app from "../app";
 
 
+const DrawdownSchedule = mongoose.model('Drawdown', DrawdownScheduleSchema);
 export class Routes {
     
     public loanController: LoanController = new LoanController();
@@ -13,10 +15,21 @@ export class Routes {
     public routes(app): void{
         app.route('/')
         .get((req: Request, res: Response)=> {
-            res.status(200).send({
-                message: 'GET request successfull!'
+            // res.status(200).send({
+            //     message: 'GET request successfull!'
+            // })
+            console.log(this.drawdownSheduleController.getDrawdownSchedule);
+            res.render('table', {
+                loanID: (req: Request, res: Response)=>{
+                    DrawdownSchedule.find({}, (err, drawdownschedule)=>{
+                        if(err){
+                            res.send(err);
+                        }
+                        res.json(drawdownschedule);
+                    });
+                }
             })
-        })
+        });
 
         //Loan details
         app.route('/loans')
